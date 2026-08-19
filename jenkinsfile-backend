@@ -2,12 +2,15 @@ pipeline {
     agent {
         label 'worker'
     }
+
     tools {
         maven 'mvn'
     }
+
     environment{
         my_aws_cred = credentials('aws-access')
     }
+    
     stages{
         stage ('checkout'){
             steps {
