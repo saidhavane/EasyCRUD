@@ -53,6 +53,16 @@ pipeline {
 
                 }
             }
-        }            
+        }  
+         stage ('docker -build'){
+            steps {
+                dir('backend'){
+                    sh'''
+                      docker build -t backend:${BUILD_NUMBER}
+                      docker images
+                      '''
+                }
+            }
+         }         
     }
 }
