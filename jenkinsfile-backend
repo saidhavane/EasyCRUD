@@ -10,7 +10,7 @@ pipeline {
     environment{
         my_aws_cred = credentials('aws-access')
     }
-    
+
     stages{
         stage ('checkout'){
             steps {
@@ -24,8 +24,8 @@ pipeline {
                 }
             }
         }
-        post{
-            success{
+        post {
+            success {
                 archiveArtifacts artifact: 'backend/target/*.jar', fingerprint: true
             }
         }
