@@ -24,10 +24,10 @@ pipeline {
                 }
             }
         }
-        post {
-            success {
-                archiveArtifacts artifact: 'backend/target/*.jar', fingerprint: true
-            }
+            post {
+                success {
+                    archiveArtifacts artifact: 'backend/target/*.jar', fingerprint: true
+                }
         }
                        
     }
