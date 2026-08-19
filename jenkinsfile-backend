@@ -5,6 +5,9 @@ pipeline {
     tools {
         maven 'mvn'
     }
+    environment{
+        my_aws_cred = credentials('aws-access')
+    }
     stages{
         stage ('checkout'){
             steps {
@@ -16,6 +19,11 @@ pipeline {
                 dir ('backend'){
                     sh 'mvn clean package'
                 }
+            }
+        }
+        post{
+            success{
+                archiveArtifacts artifact: 'backend/target/*.jar', fingerprint: true
             }
         }
                        
