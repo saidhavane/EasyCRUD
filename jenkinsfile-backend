@@ -28,6 +28,14 @@ pipeline {
                     archiveArtifacts artifacts: 'backend/target/*.jar', fingerprint: true
                 }
             }
+        }
+        stage ('artifact to s3') {
+            steps{ 
+                sh '''
+                   sudo snap install aws-cli --classic
+                   aws s3 cp backend/target/*.jar s3://easycrude-2003/Artifact/student.war
+                   '''
+            }
         }              
     }
 }
